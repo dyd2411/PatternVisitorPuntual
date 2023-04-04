@@ -1,9 +1,5 @@
 package composite;
 
-/**
- *
- * @author OSCAR
- */
 public abstract class OrderComponent {
 
     private double total;

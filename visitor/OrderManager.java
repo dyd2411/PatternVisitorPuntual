@@ -16,9 +16,6 @@ import builder.*;
 
 import java.util.HashMap;
 
-/**
- * @author OSCAR
- */
 public class OrderManager extends JFrame {
 
     public static final String BLANK = "";
@@ -46,7 +43,7 @@ public class OrderManager extends JFrame {
     private OrderVisitor objVisitor;
 
     public OrderManager() {
-        super("Visitor Pattern Puntual Exercise");
+        super("Visitor Pattern Puntual");
 
         objVisitor = new OrderVisitor();
 
@@ -469,8 +466,7 @@ class ButtonHandler implements ActionListener {
         }
         if (orderType.equalsIgnoreCase(OrderManager.BRAZILIAN_ORDER)) {
             Double orderAmount = Double.parseDouble(values.get("orderAmount"));
-            Double IVA = Double.parseDouble(values.get("additionalIVA"));
-            return new BrazilianOrder(orderAmount, IVA);
+            return new BrazilianOrder(orderAmount);
         }
         return null;
     }

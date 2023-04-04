@@ -6,10 +6,6 @@ import java.util.Vector;
 
 import iterador.FilterOrders;
 
-/**
- *
- * @author OSCAR
- */
 public class OrderComposite extends OrderComponent {
 
     Vector orderCol = new Vector();

@@ -28,7 +28,7 @@ class OrderVisitor implements VisitorInterface {
     }
 
     public void visit(BrazilianOrder inp_order) {
-        orderTotal = inp_order.getOrderAmount() + inp_order.getOrderAmount();
+        orderTotal = inp_order.getOrderAmount();
         inp_order.setTotal(getOrderTotal());
     }
 

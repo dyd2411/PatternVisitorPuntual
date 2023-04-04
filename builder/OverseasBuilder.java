@@ -8,10 +8,7 @@ import visitor.OverseasOrder;
 
 import java.util.*;
 
-/**
- *
- * @author OSCAR
- */
+
 public class OverseasBuilder extends UIBuilder {
 
     private JTextField txtOrderAmount;

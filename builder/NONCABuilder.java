@@ -8,10 +8,7 @@ import visitor.Order;
 
 import java.util.*;
 
-/**
- *
- * @author OSCAR
- */
+
 public class NONCABuilder extends UIBuilder {
 
     private JTextField txtOrderAmount;
