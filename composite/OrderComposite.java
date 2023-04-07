@@ -53,4 +53,13 @@ public class OrderComposite extends OrderComponent {
         return orderCol.elements();
     }
 
+    public OrderComponent getLastestOrder() {
+        return (OrderComponent) orderCol.lastElement();
+    }
+
+    // count orders from collection
+    public int getOrdersSize() {
+        return orderCol.size();
+    }
+
 }

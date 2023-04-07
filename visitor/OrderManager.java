@@ -10,11 +10,9 @@ import java.util.Iterator;
 
 import javax.swing.*;
 import com.sun.java.swing.plaf.windows.*;
-
-
 import builder.*;
-
 import java.util.HashMap;
+
 
 public class OrderManager extends JFrame {
 
@@ -40,6 +38,9 @@ public class OrderManager extends JFrame {
     private JLabel lblParcial, lblParcialValue;
     private JLabel lblTotal, lblTotalValue;
 
+    // Orders table var
+    private DataManagementTable ordersTable;
+
     private OrderVisitor objVisitor;
 
     public OrderManager() {
@@ -63,6 +64,10 @@ public class OrderManager extends JFrame {
 
         lblTotal = new JLabel("Result Total:");
         lblTotalValue = new JLabel("Click GetTotal Button");
+
+        // Table init
+        ordersTable = new DataManagementTable();
+
 
         // Create the open button
         getTotalButton = new JButton(OrderManager.GET_TOTAL);
@@ -123,6 +128,10 @@ public class OrderManager extends JFrame {
         gridbag2.setConstraints(exitButton, gbc2);
 
         // ****************************************************
+        JPanel tablePanel = new JPanel();
+        tablePanel.add(ordersTable.getSpTable());
+
+
         JPanel buttonPanel = new JPanel();
         GridBagLayout gridbag = new GridBagLayout();
         buttonPanel.setLayout(gridbag);
@@ -186,6 +195,7 @@ public class OrderManager extends JFrame {
 
         contentPane.add(buttonPanel, BorderLayout.NORTH);
         contentPane.add(panel, BorderLayout.CENTER);
+        contentPane.add(tablePanel, BorderLayout.SOUTH);
         try {
             UIManager.setLookAndFeel(new WindowsLookAndFeel());
             SwingUtilities.updateComponentTreeUI(OrderManager.this);
@@ -204,7 +214,7 @@ public class OrderManager extends JFrame {
         });
 
         // frame.pack();
-        frame.setSize(500, 400);
+        frame.setSize(500, 700);
         frame.setVisible(true);
     }
 
@@ -251,6 +261,10 @@ public class OrderManager extends JFrame {
         return saveOrderButton;
     }
 
+    public DataManagementTable getOrdersTable() {
+        return ordersTable;
+    }
+
 }// End of class OrderManager
 
 class ButtonHandler implements ActionListener {
@@ -290,6 +304,8 @@ class ButtonHandler implements ActionListener {
 
             // get input values
             HashMap values = builder.getValues();
+            
+
             Order order = createOrder(orderType, values);
 
             // Get the Visitor (instantiate)
@@ -299,6 +315,7 @@ class ButtonHandler implements ActionListener {
             order.accept(visitor);
             try {
                 objOrderComp.addComponent((OrderComponent) order);
+                objOrderManager.getOrdersTable().updateOrdersTable(objOrderComp);
             } catch (CompositeException ex) {
                 System.out.println("Error AddComponent" + ex);
             }
@@ -317,7 +334,7 @@ class ButtonHandler implements ActionListener {
             } else {
                 numOrden = Integer.parseInt(op);
                 Order orderToEdit = null;
-
+ 
                 Iterator iterator = objOrderComp.getFilteredOrders("");
 
                 for (int i = 0; i < numOrden; i++) {
