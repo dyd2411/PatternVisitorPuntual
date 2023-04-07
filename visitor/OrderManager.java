@@ -328,7 +328,9 @@ class ButtonHandler implements ActionListener {
         // ****************************************************
         if (e.getActionCommand().equals(OrderManager.MODIFY_ORDER)) {
 
-            String op = JOptionPane.showInputDialog(objOrderManager, "Ingrese el ID de orden");
+            //String op = JOptionPane.showInputDialog(objOrderManager, "Ingrese el ID de orden");
+            System.out.println("selected: " + objOrderManager.getOrdersTable().getSelected());
+            String op = Integer.toString(objOrderManager.getOrdersTable().getSelected());
 
             if (op == null) {
             } else {

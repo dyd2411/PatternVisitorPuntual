@@ -11,6 +11,7 @@ public class DataManagementTable {
     private JTable ordersTable;
     private JScrollPane spTable;
     private TableModel tableModel;
+    private int selected;
 
     public DataManagementTable() {
         Object[][] data = {};
@@ -29,7 +30,7 @@ public class DataManagementTable {
                if (me.getClickCount() == 2) {     // to detect doble click events
                     JTable target = (JTable)me.getSource();
                     int row = target.getSelectedRow(); // select a row
-                    JOptionPane.showMessageDialog(null, ordersTable.getValueAt(row, 0)); // get the value of a row and column.
+                    setSelected((int) ordersTable.getValueAt(row, 0)); // get the value of a row and column.
                }
             }
         });
@@ -57,6 +58,14 @@ public class DataManagementTable {
 
     public void setTableModel(TableModel tableModel) {
         this.tableModel = tableModel;
+    }
+
+    public int getSelected() {
+        return selected;
+    }
+
+    public void setSelected(int selected) {
+        this.selected = selected;
     }
 
     public void updateOrdersTable(OrderComposite objOrderComp) {
